@@ -1,9 +1,38 @@
-import { Button } from "@/components/ui/button";
+// import { UserButton } from "@clerk/nextjs";
 
-export default function Home() {
+// const SetupPage = ()=> {
+//   return (
+//    <div className="p-4">
+//      <UserButton />
+//    </div>
+//   );
+// }
+
+// export default SetupPage; 
+
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+
+function Header() {
   return (
-   <div className="p-4">
-    <Button size="default" variant="destructive">Click me</Button>
-   </div>
-  );
+    <header style={{ display: 'flex', justifyContent: 'space-between', padding: 20 }}>
+      <h1>My App</h1>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+    </header>
+  )
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <ClerkProvider>
+        <Header />
+        {children}
+      </ClerkProvider>
+    </html>
+  )
 }
