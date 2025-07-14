@@ -3,19 +3,22 @@
 // const SetupPage = ()=> {
 //   return (
 //    <div className="p-4">
-//      <UserButton />
+//      <UserButton /> i  sko nikal k neeche wala
+//       <Modal tittle="Test" description="Test description" isOpen onClose={()=>{}}> Children</Modal> 
 //    </div>
 //   );
 // }
 
 // export default SetupPage; 
 
+
+"use client";
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 function Header() {
   return (
     <header style={{ display: 'flex', justifyContent: 'space-between', padding: 20 }}>
-      <h1>My App</h1>
+      <h1>Root page</h1>
       <SignedIn>
         <UserButton />
       </SignedIn>
