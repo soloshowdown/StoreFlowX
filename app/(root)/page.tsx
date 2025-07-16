@@ -13,9 +13,19 @@
 
 
 "use client";
+import { useEffect } from 'react';
+import { useStoreModal } from '@/hooks/use-store-modal';
 import { ClerkProvider, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 function Header() {
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
   return (
     <header style={{ display: 'flex', justifyContent: 'space-between', padding: 20 }}>
       <h1>Root page</h1>
@@ -25,7 +35,9 @@ function Header() {
       <SignedOut>
         <SignInButton />
       </SignedOut>
+      
     </header>
+  
   )
 }
 
